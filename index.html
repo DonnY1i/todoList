@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>todo</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="resource/bootstrap-3.3.7/css/bootstrap.css">
+</head>
+<body>
+	<div class="container">
+		<div class="addtodo">
+			<label for="newtodo">TODO:</label>
+			<input type="text" id="newtodo">
+			<button type="button" class="btn btn-default btn-sm" id="add">
+ 				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</div>
+		<div class="todolist">
+			<ul>
+				<li>
+					<div class="item">
+						<p class="content">面试</p>
+						<span class="date">2016/12/4</span>
+					</div>
+					<button type="button" class="btn btn-default btn-sm done" title="Done!">
+					 	<span class="glyphicon glyphicon-ok"></span>
+					</button>
+					<button type="button" class="btn btn-default btn-sm remove" title="Remove!">
+					 	<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</li>
+				<li>
+					<div class="item">
+						<p class="content">学习自动化工具</p>
+						<span class="date">2016/12/4</span>
+					</div>
+					<button type="button" class="btn btn-default btn-sm done" title="Done!">
+					 	<span class="glyphicon glyphicon-ok"></span>
+					</button>
+					<button type="button" class="btn btn-default btn-sm remove" title="Remove!">
+					 	<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="resource/jquery-3.1.1.js"></script>
+<script src="resource/bootstrap-3.3.7/js/bootstrap.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#add').click(function(){
+			var now = new Date();
+			var dateString = now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate();
+
+			var newli = $('<li>');
+			var item = $('<div>').addClass("item");
+			var content = $('<p>').addClass("content").html($('#newtodo').val()).appendTo(item);
+			var date = $('<span>').addClass("date").html(dateString).appendTo(item);
+
+			item.appendTo(newli);
+			var doneBtn = $("<button type=\"button\" class=\"btn btn-default btn-sm done\" title=\"Done!\"><span class=\"glyphicon glyphicon-ok\"></span></button>").appendTo(newli).click(doneHandler);
+			var removeBtn = $("<button type=\"button\" class=\"btn btn-default btn-sm remove\" title=\"Remove!\"><span class=\"glyphicon glyphicon-remove\"></span></button>").appendTo(newli).click(removeHandler);
+			newli.hide().insertBefore($('li').eq(0)).slideDown("fast");
+			$('#newtodo').val("");
+
+		});
+		function doneHandler(){
+			$this = $(this);
+			$li = $this.parent();
+			$ul = $li.parent();
+			$li.slideUp("fast");
+			setTimeout(function(){
+				$li.remove().hide().appendTo($ul).slideDown("fast");
+				setTimeout(function(){
+					$this.fadeOut("fast");
+					$this.siblings('button').fadeOut("fast");
+					$this.siblings('div.item').addClass('done');
+				},300);
+				
+			},300);
+		}
+		function removeHandler(){
+			$this = $(this);
+			$this.parent().animate({right:'1000px'}).slideUp("fast");
+			setTimeout(function(){
+				$this.parent().remove();
+			},300);
+		}
+		$('button.done').click(doneHandler);
+		$('button.remove').click(removeHandler);
+	});
+</script>
+</html>

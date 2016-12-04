@@ -1,0 +1,56 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-family: "Microsoft Yahei";
+}
+div.container {
+	margin: 0 auto;
+	padding: 50px;
+	width: 600px;
+	overflow: hidden;
+}
+div.todolist {
+	margin-top: 10px;
+	border-top: 2px solid red;
+}
+.todolist ul {
+	list-style: none;
+}
+.todolist li {
+	position: relative;
+}
+div.item {
+	display: inline-block;
+	padding: 5px;
+	margin-top: 10px;
+	background-color: #428bdc;
+	color: white;
+	border-radius: 5px;
+	width: 400px;
+	position: relative;
+}
+/*不起作用*/
+/*button {
+	margin-left: 5px;
+}*/
+p.content {
+	width: 280px;
+}
+span.date {
+	font-size: 0.3em;
+	position: absolute;
+	right: 2px;
+	bottom: 0;
+}
+
+div.item.done {
+	width: 500px;
+	color: black;
+	background-color: gray;
+	text-decoration: line-through;
+	transition: width 0.3s,color 0.3s,background-color 0.3s,text-decoration 0.3s;
+	-moz-transition: width 0.3s,color 0.3s,background-color 0.3s,text-decoration 0.3s;	/* Firefox 4 */
+	-webkit-transition: width 0.3s,color 0.3s,background-color 0.3s,text-decoration 0.3s;	/* Safari 和 Chrome */
+	-o-transition: width 0.3s,color 0.3s,background-color 0.3s,text-decoration 0.3s;	/* Opera */
+}
+div.item.done {}
