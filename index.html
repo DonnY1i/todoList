@@ -59,8 +59,8 @@
 			var date = $('<span>').addClass("date").html(dateString).appendTo(item);
 
 			item.appendTo(newli);
-			var doneBtn = $("<button type=\"button\" class=\"btn btn-default btn-sm done\" title=\"Done!\"><span class=\"glyphicon glyphicon-ok\"></span></button>").appendTo(newli).click(doneHandler);
-			var removeBtn = $("<button type=\"button\" class=\"btn btn-default btn-sm remove\" title=\"Remove!\"><span class=\"glyphicon glyphicon-remove\"></span></button>").appendTo(newli).click(removeHandler);
+			var doneBtn = $("<button type=\"button\" class=\"btn btn-default btn-sm done\" title=\"Done!\"><span class=\"glyphicon glyphicon-ok\"></span></button>").appendTo(newli);
+			var removeBtn = $("<button type=\"button\" class=\"btn btn-default btn-sm remove\" title=\"Remove!\"><span class=\"glyphicon glyphicon-remove\"></span></button>").appendTo(newli);
 			newli.hide().insertBefore($('li').eq(0)).slideDown("fast");
 			$('#newtodo').val("");
 
@@ -87,8 +87,7 @@
 				$this.parent().remove();
 			},300);
 		}
-		$('button.done').click(doneHandler);
-		$('button.remove').click(removeHandler);
+		$('div.todolist ul').on("click","button.done",doneHandler).on("click","button.remove",removeHandler);
 	});
 </script>
 </html>
